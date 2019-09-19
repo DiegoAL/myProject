@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!-- estilos da pagina de layout -->
+		<link rel="stylesheet" type="text/css"
+			href="{{ url_for('static',filename='styles/layout.css') }}">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous">
+		
+		{%block head%} {%endblock%}
+	
+	</head>
+
+	<body>
+	
+	
+		<nav class="navbar navbar-expand-sm navbar-light bg-light">
+	
+			<img class="navbar-brand"
+				src="{{ url_for('static', filename='imagens/enel-logo.PNG') }}">
+	
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto mx-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Registrar</a>
+					</li>
+	
+					<li class="nav-item"><a class="nav-link" href="#">Consultar</a>
+					</li>
+	
+					<li class="nav-item"><a class="nav-link" href="#">Duvidas</a></li>
+	
+				</ul>
+			</div>
+		</nav>
+	
+		{%block body%} {%endblock%}
+	
+	</body>
+</html>

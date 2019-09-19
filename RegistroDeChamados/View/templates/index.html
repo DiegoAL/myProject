@@ -1,0 +1,33 @@
+{%extends "layout.html"%}
+
+{%block head%}
+	<!-- estilo da pagina index -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}"/>
+
+{%endblock%}
+
+{%block body%}
+
+		<div class="alert alert-warning" role="alert">
+			Avisos Importantes!
+		</div>
+
+		<!--TODO: Ajustar o código para buscar os alertas cadastrados no banco de dados  --> 		
+		<div class="card" style="margin: 15px">
+			<div class="card-header"> Indisponibilidade</div>
+			<div class="card-body">
+				<h5 class="card-title">Sistema CRM</h5>
+				<p class="card-text">Sistema crm encontra-se indisponivel no momento devido a manutenção</p>				
+			</div>
+		</div>
+		
+		<div class="card">
+			<div class="card-header"> Indisponibilidade</div>
+			<div class="card-body">
+				<h5 class="card-title">Sistema CRM</h5>
+				<p class="card-text">Sistema crm encontra-se indisponivel no momento devido a manutenção</p>				
+			</div>
+		</div>
+	
+
+{%endblock%}
