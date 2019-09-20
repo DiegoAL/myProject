@@ -6,6 +6,10 @@ Created on 17 de set de 2019
 '''
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from Controller.BD.sqlLite3_creat import main
+from Controller.BD import sqlLite3_creat
+from Model.ModelChamado import *
+
 
 app = Flask(__name__)
 
@@ -16,10 +20,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app) 
 
 def main():
+    #realiza a criação do banco de dados
+    sqlLite3_creat.main()
+    
     #Realiza a criação das tabelas
-    #FIXME: Tabela não estão sendo criadas, necessario analisar
-    db.create_all()
-
+    sqla.create_all()
+    
 #Inicio
 @app.route("/")
 def index():

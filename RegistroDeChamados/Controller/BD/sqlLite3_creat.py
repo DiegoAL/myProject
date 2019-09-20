@@ -9,10 +9,10 @@ Created on 19 de set de 2019
 '''
 import sqlite3
 
-def __init__():
+def main ():
     conn = sqlite3.connect('RegistroChamado.db')
     conn.close()
     
 if __name__ == '__main__':
-    __init__()
+    main()
 
