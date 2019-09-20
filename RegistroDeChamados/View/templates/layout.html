@@ -20,19 +20,23 @@
 	
 	
 		<nav class="navbar navbar-expand-sm navbar-light bg-light">
-	
-			<img class="navbar-brand"
-				src="{{ url_for('static', filename='imagens/enel-logo.PNG') }}">
-	
+			
+			<a class="navbar-brand" href="{{url_for('index')}}">
+				<img src="{{ url_for('static', filename='imagens/enel-logo.PNG') }}">
+			</a>
+			
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav mr-auto mx-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Registrar</a>
+					<li class="nav-item active"><a class="nav-link" href="{{url_for('registrar')}}">Registrar</a>
 					</li>
 	
 					<li class="nav-item"><a class="nav-link" href="#">Consultar</a>
 					</li>
 	
 					<li class="nav-item"><a class="nav-link" href="#">Duvidas</a></li>
+					
+					<!-- TODO: Criar a pagina para gerenciar as informacoes de tablea no banco -->
+					<li class="nav-item"><a class="nav-link" href="#">Gerenciamento Infos</a></li>
 	
 				</ul>
 			</div>

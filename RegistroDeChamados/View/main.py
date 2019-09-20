@@ -21,7 +21,7 @@ db = SQLAlchemy(app)
 
 def main():
     #realiza a criação do banco de dados
-    sqlLite3_creat.main()
+    sqlLite3_creat.main(local=r'..\Controller\BD\RegistroChamado.db')
     
     #Realiza a criação das tabelas
     sqla.create_all()
@@ -31,3 +31,8 @@ def main():
 def index():
     main()
     return render_template("index.html")
+
+#Registrod e novos chamados
+@app.route("/registrarchamado")
+def registrar():
+    return render_template("registrarChamado.html")

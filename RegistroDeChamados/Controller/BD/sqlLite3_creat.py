@@ -9,10 +9,14 @@ Created on 19 de set de 2019
 '''
 import sqlite3
 
-def main ():
+def main (local):
+    conn = sqlite3.connect(local)
+    conn.close()
+
+def mainSemParametros ():
     conn = sqlite3.connect('RegistroChamado.db')
     conn.close()
-    
+
 if __name__ == '__main__':
-    main()
+    mainSemParametros()
 
