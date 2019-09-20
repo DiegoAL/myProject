@@ -35,4 +35,7 @@ def index():
 #Registrod e novos chamados
 @app.route("/registrarchamado")
 def registrar():
-    return render_template("registrarChamado.html")
+    #FIXME: Ajustar a query para retornar apenas o campo descricao
+    tpChamados = TipoChamado.query.all()
+        
+    return render_template("registrarChamado.html", tpchamados = tpChamados)

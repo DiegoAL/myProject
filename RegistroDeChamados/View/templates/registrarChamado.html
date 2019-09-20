@@ -7,6 +7,10 @@
 {%block body%}
 
 	<!-- FIXME: Desenvolver o form conforme o arquivo 'modeloForm.PNG' e alimentar o banco com informações temporarias -->
+	{% for item in tpchamados %}
+		<p>{{ item }}</p>
+	{%endfor%}
+	
 	<form>
 		<div class="form-row">
 			<div class="col-3">
