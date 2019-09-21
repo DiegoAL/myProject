@@ -40,16 +40,33 @@
 					{%endfor%}
 				</select>
 			</div>	
-		</div>		
-
-	
-	
-	
+		</div>
+		
+		<div class="form-row">
+			<div class="col-7">
+				<p for="chbxQuestionSucErr">
+					O processo conclui com sucesso ou erro?
+				</p>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt1" value="Sucesso"/>
+					<label class="form-check-label" for="chbxOpt1">Sucesso</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt2" value="Erro"/>
+					<label class="form-check-label" type="checkbox" for="chbxOpt2">Erro</label>
+				</div>
+			</div>
+		</div>
 	
 		<div class="form-row">
-			<div class="col-3">
-				<label for="descricao">Descrição Detalhada do Problema</label>
-				<input class="form-control " type="text" placeholder="Descreva aqui o Problema"> </input>
+			<div class="col-4">
+				<label for="TempoProcessamento">
+					Qual a percepção da lentidão/oscilação no que se trata do tempo total em processamento 
+					<div class="spinner-border text-primary" role="status">
+						<span class="sr-only">Loading</span>
+					</div>
+				</label>
+				<input class="form-control form-control-lg " type="time" step="1" min="00:00:00" max="23:59:59" id="TempoProcessamento"> </input>
 			</div>
 		</div>
 	</form>
