@@ -37,5 +37,7 @@ def index():
 def registrar():
     #FIXME: Ajustar a query para retornar apenas o campo descricao
     tpChamados = TipoChamado.query.all()
+    sistemas = Sistema.query.all()
+    origemReclamacao = OrigemReclamacao.query.all()
         
-    return render_template("registrarChamado.html", tpchamados = tpChamados)
+    return render_template("registrarChamado.html", tpchamados = tpChamados, sistemas = sistemas, origemReclamacao = origemReclamacao )

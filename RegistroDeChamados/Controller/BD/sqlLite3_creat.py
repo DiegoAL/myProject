@@ -28,6 +28,8 @@ def TEMP_cargaDeDados():
     conn.commit()
     cursor.execute(""" DELETE FROM tblSistema """)
     conn.commit()
+    cursor.execute(""" DELETE FROM tblOrigemReclamacao """)
+    conn.commit()
     
     #Tabela de tipos
     cursor.execute(""" INSERT INTO tblTipoChamado (id, descricao, fkNumeroChamado) VALUES (1, 'Lentidão', 1)""")
@@ -39,18 +41,29 @@ def TEMP_cargaDeDados():
     cursor.execute(""" INSERT INTO tblSistema (id, descricao, fkNumeroChamado) VALUES (2, 'CRM', 1)""")
     cursor.execute(""" INSERT INTO tblSistema (id, descricao, fkNumeroChamado) VALUES (3, 'Workspace', 1)""")
     
+    #Tabela de Origem
+    cursor.execute(""" INSERT INTO tblOrigemReclamacao (id, area, fkNumeroChamado) VALUES (1, 'Call Center - Santos', 1)""")
+    cursor.execute(""" INSERT INTO tblOrigemReclamacao (id, area, fkNumeroChamado) VALUES (2, 'Linha Direta', 1)""")
+    cursor.execute(""" INSERT INTO tblOrigemReclamacao (id, area, fkNumeroChamado) VALUES (3, 'Clientes Corporativos (CRC)', 1)""")
+    
     conn.commit()
     
     #print registros
     cursor.execute(""" SELECT * FROM tblTipoChamado""")
     for linha in cursor.fetchall():
         print(f'Tabela Tipo: {linha}')
+    print('\n')
     
     cursor.execute(""" SELECT * FROM tblSistema""")
     for linha in cursor.fetchall():
         print(f'Tabela Sistema: {linha}')
-
-
+    print('\n')    
+        
+    cursor.execute(""" SELECT * FROM tblOrigemReclamacao  """)
+    for item in cursor.fetchall():
+        print(f'Tabela OrigemReclamacao: {item}')
+    print('\n')    
+        
 if __name__ == '__main__':
     mainSemParametros()
     TEMP_cargaDeDados()

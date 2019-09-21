@@ -1,17 +1,51 @@
 {% extends "layout.html"%}
 
 {%block head%}
-
+	<link>
 {%endblock%}
 
 {%block body%}
 
 	<!-- FIXME: Desenvolver o form conforme o arquivo 'modeloForm.PNG' e alimentar o banco com informações temporarias -->
-	{% for item in tpchamados %}
-		<p>{{ item }}</p>
-	{%endfor%}
+	<form style="margin: 15px; border: solid;">
+		
+		<div class="form-row">
+			<div class="col-7">
+				<label for="cbxTpChamado">Tipo de Chamado</label>			
+				<select class="form-control" id="cbxTpChamado"> 
+					{% for item in tpchamados %}
+						<option> {{ item.descricao }} </option> 
+					{%endfor%}
+				</select>
+			</div>	
+		</div>
+		
+		<div class="form-row">
+			<div class="col-7">
+				<label for="cbxSistema">Sistema Afetado</label>			
+				<select class="form-control" id="cbxSistema">
+					{%for item in sistemas%}
+						<option> {{item.descricao}} </option>
+					{%endfor%}
+				</select>
+			</div>	
+		</div>		
+
+		<div class="form-row">
+			<div class="col-7">
+				<label for="cbxOrigemReclamacao">Qual area está sendo afetada ou reportando o problema?</label>			
+				<select class="form-control" id="cbxOrigemReclamacao"> 
+					{% for item in origemReclamacao %}
+						<option> {{item.area}} </option>
+					{%endfor%}
+				</select>
+			</div>	
+		</div>		
+
 	
-	<form>
+	
+	
+	
 		<div class="form-row">
 			<div class="col-3">
 				<label for="descricao">Descrição Detalhada do Problema</label>

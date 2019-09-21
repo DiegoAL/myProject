@@ -14,6 +14,7 @@ class Chamado(sqla.Model):
     tipo =  sqla.relationship('TipoChamado', backref = 'tblChamado', lazy = True)
     sistema = sqla.relationship('Sistema', backref='tblChamado', lazy = True)
     descricaoProblema = sqla.Column(sqla.String(100), nullable = False)
+    origemReclamacao = sqla.relationship('OrigemReclamacao', backref = 'tblChamado', lazy = True)
     #TODO: criar o campo e tabela de status do chamado, alem de complementar as informações com os dados do solicitante
     
 class TipoChamado(sqla.Model):
@@ -26,4 +27,10 @@ class Sistema(sqla.Model):
     __tablename__ = 'tblSistema'
     id = sqla.Column(sqla.Integer, primary_key = True)
     descricao = sqla.Column(sqla.String(30), nullable = False)
+    fkNumeroChamado = sqla.Column(sqla.Integer, sqla.ForeignKey('tblChamado.numeroChamado'), nullable = False)
+    
+class OrigemReclamacao (sqla.Model):
+    __tablename__ = "tblOrigemReclamacao"
+    id = sqla.Column(sqla.Integer, primary_key = True)
+    area = sqla.Column(sqla.String(30), nullable = False)
     fkNumeroChamado = sqla.Column(sqla.Integer, sqla.ForeignKey('tblChamado.numeroChamado'), nullable = False)
