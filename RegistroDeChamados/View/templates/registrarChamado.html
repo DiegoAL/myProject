@@ -44,9 +44,7 @@
 		
 		<div class="form-row">
 			<div class="col-7">
-				<p for="chbxQuestionSucErr">
-					O processo conclui com sucesso ou erro?
-				</p>
+				<p>O processo conclui com sucesso ou erro?</p>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt1" value="Sucesso"/>
 					<label class="form-check-label" for="chbxOpt1">Sucesso</label>
@@ -69,6 +67,79 @@
 				<input class="form-control form-control-lg " type="time" step="1" min="00:00:00" max="23:59:59" id="TempoProcessamento"> </input>
 			</div>
 		</div>
+		
+		<div class="form-row">
+			<div class="col-7">
+				<label for="inpOutros">A falha ocorre em outros processos ou está 
+					concentrada em um processo especifico?</label>
+				<input class="form-control" type="text" id="inpOutros" placeholder="Descreva aqui a situação">
+			</div>	
+		</div>
+		
+		<div class="form-row">
+			<div class="col-5">
+				<p>O problema ocorre em todas as lojas?</p>
+				
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt1" value="Sim">
+					<label class="form-check-label" for="chbxGp2Opt1">Sim</label>
+				</div>
+				
+				<div class="form-check form-check-inline">
+					<input class="from-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt2" value="Nao">
+					<label class="form-check-label" for="chbxGp2Opt2">Não</label>
+				</div>
+			</div>
+		</div>
+			
+		<div class="form-row">
+			<div class="col-5">
+				<p>O problema ocorre em todas as maquinas da loja?</p>
+				
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt1" value="Sim">
+					<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
+				</div>
+				
+				<div class="form-check form-check-inline">
+					<input class="from-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt2" value="Nao">
+					<label class="form-check-label" for="chbxGp3Opt2">Não</label>
+				</div>
+			</div>
+		</div>
+				
+		<div class="form-row">
+			<div class="col-5">
+				<p>O problema ocorre na Linha Direta, CRC e BackOffice?</p>
+				
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup4" id="chbxGp4Opt1" value="Sim">
+					<label class="form-check-label" for="chbxGp4Opt1">Sim</label>
+				</div>
+				
+				<div class="form-check form-check-inline">
+					<input class="from-check-input" type="radio" name="chbxGroup4" id="chbxGp24pt2" value="Nao">
+					<label class="form-check-label" for="chbxGp4Opt2">Não</label>
+				</div>
+			</div>
+		</div>
+			
+		<div class="form-row">
+			<div class="col-5">
+				<p>O problema ocorre em todas as maquinas?</p>
+				
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt1" value="Sim">
+					<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
+				</div>
+				
+				<div class="form-check form-check-inline">
+					<input class="from-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt2" value="Nao">
+					<label class="form-check-label" for="chbxGp3Opt2">Não</label>
+				</div>
+			</div>
+		</div>
+		
 	</form>
 {%endblock%}
 
