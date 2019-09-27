@@ -11,210 +11,230 @@
 {%block body%}
 
 	<!-- FIXME: Desenvolver o form conforme o arquivo 'modeloForm.PNG' e alimentar o banco com informações temporarias -->
-	<form style="margin: 15px; border: solid;">
-		
-		<div class="form-row">
-			<div class="col-7">
-				<label for="cbxTpChamado">Tipo de Chamado</label>			
-				<select class="form-control" id="cbxTpChamado"> 
-					{% for item in tpchamados %}
-						<option> {{ item.descricao }} </option> 
-					{%endfor%}
-				</select>
-			</div>	
-		</div>
-		
-		<div class="form-row">
-			<div class="col-7">
-				<label for="cbxSistema">Sistema Afetado</label>			
-				<select class="form-control" id="cbxSistema">
-					{%for item in sistemas%}
-						<option> {{item.descricao}} </option>
-					{%endfor%}
-				</select>
-			</div>	
-		</div>		
-
-		<div class="form-row">
-			<div class="col-7">
-				<label for="cbxOrigemReclamacao">Qual area está sendo afetada ou reportando o problema?</label>			
-				<select class="form-control" id="cbxOrigemReclamacao"> 
-					{% for item in origemReclamacao %}
-						<option> {{item.area}} </option>
-					{%endfor%}
-				</select>
-			</div>	
-		</div>
-		
-		<div class="form-row">
-			<div class="col-7">
-				<p>O processo conclui com sucesso ou erro?</p>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt1" value="Sucesso"/>
-					<label class="form-check-label" for="chbxOpt1">Sucesso</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt2" value="Erro"/>
-					<label class="form-check-label" type="checkbox" for="chbxOpt2">Erro</label>
-				</div>
-			</div>
-		</div>
+	<div class="container">
 	
-		<div class="form-row">
-			<div class="col-4">
-				<label for="TempoProcessamento">
-					Qual a percepção da lentidão/oscilação no que se trata do tempo total em processamento 
-					<div class="spinner-border text-primary" role="status">
-						<span class="sr-only">Loading</span>
+		<form class="p-3 m-2 needs-validation" novalidate>
+			
+			<div class="form-row">
+				
+				<div class="form-group col-md-6">
+					
+					<label for="cbxTpChamado">Tipo de Chamado</label>			
+					<select class="form-control" id="cbxTpChamado" required>
+						<option></option> 
+						{% for item in tpchamados %}
+							<option> {{ item.descricao }} </option> 
+						{%endfor%}
+					</select>
+					
+				</div>
+				
+				<div class="form-group col-md-6">
+				
+					<label for="cbxSistema">Sistema Afetado</label>			
+					<select class="form-control" id="cbxSistema" required>
+						<option></option>
+						{%for item in sistemas%}
+							<option> {{item.descricao}} </option>
+						{%endfor%}
+					</select>
+				</div>	
+		
+			</div>
+			
+			<div class="form-row">
+				<div class="form-group col-md-6">
+				
+					<label for="cbxOrigemReclamacao">Qual area está sendo afetada ou reportando o problema?</label>			
+					<select class="form-control mt-4" id="cbxOrigemReclamacao" required> 
+						<option></option>
+						{% for item in origemReclamacao %}
+							<option> {{item.area}} </option>
+						{%endfor%}
+					</select>
+					
+				</div>
+				
+				<div class="form-group col-md-6">
+					<label for="TempoProcessamento">
+						Qual a percepção da lentidão no que se trata do tempo total em processamento 
+						<div class="spinner-border text-primary" role="status">
+							<span class="sr-only">Loading</span>
+						</div>
+					</label>
+					<input class="form-control form-control " type="time" step="1" min="00:00:00" max="23:59:59" id="TempoProcessamento" required> </input>
+				</div>
+					
+			</div>
+			
+			<div class="form-group">
+					
+					<label for="inpOutros">A falha ocorre em outros processos ou está 
+						concentrada em um processo especifico? Descreva detalhadamente a situação</label>
+					<textarea class="form-control" type="text" id="inpOutros" placeholder="Descreva aqui a situação" 
+						minlength="30" required> </textarea>
+					
+					<div class="invalid-feedback">
+						Descrição nula ou insuficiente
 					</div>
-				</label>
-				<input class="form-control form-control-lg " type="time" step="1" min="00:00:00" max="23:59:59" id="TempoProcessamento"> </input>
 			</div>
-		</div>
-		
-		<div class="form-row">
-			<div class="col-7">
-				<label for="inpOutros">A falha ocorre em outros processos ou está 
-					concentrada em um processo especifico?</label>
-				<input class="form-control" type="text" id="inpOutros" placeholder="Descreva aqui a situação">
-			</div>	
-		</div>
-		
-		<div class="form-row">
-			<div class="col-5">
-				<p>O problema ocorre em todas as lojas?</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt1" value="Sim">
-					<label class="form-check-label" for="chbxGp2Opt1">Sim</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt2" value="Nao">
-					<label class="form-check-label" for="chbxGp2Opt2">Não</label>
-				</div>
-			</div>
-		</div>
-			
-		<div class="form-row">
-			<div class="col-5">
-				<p>O problema ocorre em todas as maquinas da loja?</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt1" value="Sim">
-					<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt2" value="Nao">
-					<label class="form-check-label" for="chbxGp3Opt2">Não</label>
-				</div>
-			</div>
-		</div>
-				
-		<div class="form-row">
-			<div class="col-5">
-				<p>O problema ocorre na Linha Direta, CRC e BackOffice?</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup4" id="chbxGp4Opt1" value="Sim">
-					<label class="form-check-label" for="chbxGp4Opt1">Sim</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup4" id="chbxGp24pt2" value="Nao">
-					<label class="form-check-label" for="chbxGp4Opt2">Não</label>
-				</div>
-			</div>
-		</div>
-			
-		<div class="form-row">
-			<div class="col-5">
-				<p>O problema ocorre em todas as maquinas?</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt1" value="Sim">
-					<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt2" value="Nao">
-					<label class="form-check-label" for="chbxGp3Opt2">Não</label>
-				</div>
-			</div>
-		</div>
-		
-		<div class="form-row">
-			<div class="col-5">
-				<p>O problema está ocorrendo no call center?</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt1">
-					<label class="form-check-label" for="chbxGp6Opt1">Sim, ocorre em Santo e Mogi</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt2">
-					<label class="form-check-label" for="chbxGp6Opt2">Somente em Santo</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt3">
-					<label class="form-check-label" for="chbxGp6Opt4">Somente em Mogi</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt4">
-					<label class="form-check-label" for="chbxGp6Opt4">Não há problema no Call Center</label>
-				</div>
-			</div>
-		</div>
-		
-		<div class="form-row">
-			<div class="col-4">
-				
-				<p>Já foi registrado algum chamado para esse caso</p>
-				
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt1" value="Nao">
-					<label class="form-check-label" for="chbxGp3Opt1">Não</label>
-				</div>
-				
-				<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt2" value="Sim">
-					<label class="form-check-label" for="chbxGp3Opt2">Sim</label>
-					<input class="form-check-input ml-1" type="text" id="inpChamado" value="INC00" placeholder="INC00">
-				</div>
-				
-											
-			</div>
-		</div>
-		
-		<div class="form-row">
-			<div class="col-4">
-				
-				<p>Dados de conta para participar da sala de crise</p>
 
-				<label for="contatoNome">Nome</label>
-				<input class="form-control" type="text" id="contatoNome"> 
-				
-				<label for="contatoTelefone">Telefone</label>
-				<input class="form-control phone-ddd-mask" type="text" id="contatoTelefone" placeholder="(11)12345 7895">
-
-			<div class="form-check form-check-inline">
-					<input class="from-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt2" value="Sim">
-					<label class="form-check-label" for="chbxGp3Opt2">Sim</label>
-					<input class="form-check-input ml-1" type="text" id="inpChamado" value="INC00" placeholder="INC00">
+			
+			<div class="jumbotron p-3 bg-light border border-info"> 	
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<p>O processo conclui com sucesso ou erro?</p>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt1" value="Sucesso" required/>
+						<label class="form-check-label" for="chbxOpt1">Sucesso</label>
+					</div>
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup1" id="chbxOpt2" value="Erro" required/>
+						<label class="form-check-label" type="checkbox" for="chbxOpt2">Erro</label>
+					</div>
 				</div>
-				
-											
-			</div>
-		</div>
-		
-		
-	</form>
+					
+				<div class="form-group col-md-4 border-right border-left">
+					<p>O problema ocorre em todas as lojas?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt1" value="Sim" required>
+						<label class="form-check-label" for="chbxGp2Opt1">Sim</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="from-check-input" type="radio" name="chbxGroup2" id="chbxGp2Opt2" value="Nao" required>
+						<label class="form-check-label" for="chbxGp2Opt2">Não</label>
+					</div>
+				</div>
 	
-	<script type="text/javascript" src="//assets.locaweb.com.br/locastyle/2.0.6/javascripts/locastyle.js"></script>
+				<div class="form-group col-md-4">
+					<p>O problema ocorre em todas as maquinas da loja?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt1" value="Sim" required>
+						<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="from-check-input" type="radio" name="chbxGroup3" id="chbxGp3Opt2" value="Nao" required>
+						<label class="form-check-label" for="chbxGp3Opt2">Não</label>
+					</div>
+				</div>
+
+				<div class="form-group col-md-4">
+					<p>O problema ocorre na Linha Direta, CRC e BackOffice?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup4" id="chbxGp4Opt1" value="Sim" required>
+						<label class="form-check-label" for="chbxGp4Opt1">Sim</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="from-check-input" type="radio" name="chbxGroup4" id="chbxGp24pt2" value="Nao" required>
+						<label class="form-check-label" for="chbxGp4Opt2">Não</label>
+					</div>
+				</div>
+
+				<div class="form-group col-md-4 border-right border-left">
+					<p>O problema ocorre em todas as maquinas?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt1" value="Sim" required>
+						<label class="form-check-label" for="chbxGp3Opt1">Sim</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="from-check-input" type="radio" name="chbxGroup5" id="chbxGp5Opt2" value="Nao" required>
+						<label class="form-check-label" for="chbxGp3Opt2">Não</label>
+					</div>
+				</div>
+				
+			</div>
+			
+				<div class="form-group">
+					<hr class="rounded mt-0">
+					<p>O problema está ocorrendo no call center?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt1" required>
+						<label class="form-check-label" for="chbxGp6Opt1">Sim, ocorre em Santo e Mogi</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt2" required>
+						<label class="form-check-label" for="chbxGp6Opt2">Somente em Santo</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt3" required>
+						<label class="form-check-label" for="chbxGp6Opt4">Somente em Mogi</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup6" id="chbxGp6Opt4" required>
+						<label class="form-check-label" for="chbxGp6Opt4">Não há problema no Call Center</label>
+					</div>
+				</div>
+			
+				<div class="form-group">
+					<hr class="rounded mt-0">
+					<p>Já foi registrado algum chamado para esse caso?</p>
+					
+					<div class="form-check form-check-inline">
+						<input class="form-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt1" value="Nao" required>
+						<label class="form-check-label" for="chbxGp3Opt1">Não</label>
+					</div>
+					
+					<div class="form-check form-check-inline">
+						<input class="from-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt2" value="Sim" required>
+						<label class="form-check-label" for="chbxGp3Opt2">Sim</label>
+						<input class="form-check-input ml-1" type="text" id="inpChamado" value="INC00" placeholder="INC00">
+					</div>
+																	
+				</div>
+				
+			</div>
+			
+			
+			<div class="alert alert-info lead" role="alert">
+				Dados de contato para participar da sala de crise
+			</div>
+			
+			<div class="form-row">
+					
+				<div class="form-group col-4">
+						
+					<label for="contatoNome">Nome</label>
+					<input class="form-control" type="text" id="contatoNome" required> 
+				
+				</div>
+				
+				<div class="form-group col-4">	
+					
+					<label for="contatoTelefone">Telefone</label>
+					<input class="form-control" type="text" id="contatoTelefone" placeholder="(11)12345 7895" required>
+				
+				</div>
+				
+				<div class="form-group col-4">
+					
+					<label for="contatoLocalidade">Localidade</label>
+					<input class="form-control" type="text" id="contatoLocalidade" required>
+					
+				</div>
+					
+			</div>
+			
+			<div class="form-group">
+				<button class="btn btn-success btn-lg btn-block" type="submit">Enviar</button>
+			</div>				
+		
+		</form>
+											
+	</div>
+			
+
 {%endblock%}
 
 
