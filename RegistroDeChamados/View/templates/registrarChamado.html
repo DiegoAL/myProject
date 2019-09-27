@@ -1,10 +1,11 @@
 {% extends "layout.html"%}
 
 {%block head%}
+	<!-- css com todos os estilos utilizado na pagina -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/registrarChamado.css') }}">
+	
 	<!-- JS da pagina index -->
 	<script src="{{ url_for('static',filename='javascript/registrarChamado.js') }}"></script>
-	
-	<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/2.0.6/stylesheets/locastyle.css">
 	
 {%endblock%}
 
@@ -62,7 +63,7 @@
 							<span class="sr-only">Loading</span>
 						</div>
 					</label>
-					<input class="form-control form-control " type="time" step="1" min="00:00:00" max="23:59:59" id="TempoProcessamento" required> </input>
+					<input class="form-control" type="number" step="1" id="TempoProcessamento" required> </input>
 				</div>
 					
 			</div>
