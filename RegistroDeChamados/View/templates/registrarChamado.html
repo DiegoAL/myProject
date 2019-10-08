@@ -14,14 +14,33 @@
 	<!-- FIXME: Desenvolver o form conforme o arquivo 'modeloForm.PNG' e alimentar o banco com informações temporarias -->
 	<div class="container">
 	
-		<form class="p-3 m-2 needs-validation" novalidate>
+		<form class="p-3 needs-validation" action="{{url_for('registrarChamado')}}" method="POST" novalidate>
+			
+			<div class="form-row">
+				
+				<div class="form-group col-md-5">
+					<label for="nome">Nome</label>
+					<input class="form-control" id="nome" name="nome" required>
+				</div>
+				
+				<div class="form-group col-md-2">
+					<label for="nome">Telefone</label>
+					<input class="form-control" id="telefone" name="telefone" required>
+				</div>
+				
+				<div class="form-group col-md-5">
+					<label for="nome">Localidade</label>
+					<input class="form-control" id="localidade" name="localidade" required>
+				</div>
+				
+			</div>
 			
 			<div class="form-row">
 				
 				<div class="form-group col-md-6">
 					
 					<label for="cbxTpChamado">Tipo de Chamado</label>			
-					<select class="form-control" id="cbxTpChamado" required>
+					<select class="form-control" id="cbxTpChamado" name="cbxTpChamado" required >
 						<option></option> 
 						{% for item in tpchamados %}
 							<option> {{ item.descricao }} </option> 
@@ -33,7 +52,7 @@
 				<div class="form-group col-md-6">
 				
 					<label for="cbxSistema">Sistema Afetado</label>			
-					<select class="form-control" id="cbxSistema" required>
+					<select class="form-control" id="cbxSistema" name="cbxSistema" required>
 						<option></option>
 						{%for item in sistemas%}
 							<option> {{item.descricao}} </option>
@@ -47,7 +66,7 @@
 				<div class="form-group col-md-6">
 				
 					<label for="cbxOrigemReclamacao">Qual area está sendo afetada ou reportando o problema?</label>			
-					<select class="form-control mt-4" id="cbxOrigemReclamacao" required> 
+					<select class="form-control mt-4" id="cbxOrigemReclamacao" name="cbxOrigemReclamacao" required> 
 						<option></option>
 						{% for item in origemReclamacao %}
 							<option> {{item.area}} </option>
@@ -63,7 +82,7 @@
 							<span class="sr-only">Loading</span>
 						</div>
 					</label>
-					<input class="form-control" type="number" step="1" id="TempoProcessamento" required> </input>
+					<input class="form-control" type="number" step="1" id="TempoProcessamento" name="TempoProcessamento" required> </input>
 				</div>
 					
 			</div>
@@ -72,7 +91,7 @@
 					
 					<label for="inpOutros">A falha ocorre em outros processos ou está 
 						concentrada em um processo especifico? Descreva detalhadamente a situação</label>
-					<textarea class="form-control" type="text" id="inpOutros" placeholder="Descreva aqui a situação" 
+					<textarea class="form-control" type="text" id="inpOutros" name="inpOutros" placeholder="Descreva aqui a situação" 
 						minlength="30" required> </textarea>
 					
 					<div class="invalid-feedback">
@@ -190,7 +209,7 @@
 					<div class="form-check form-check-inline">
 						<input class="from-check-input" type="radio" name="chbxGroup7" id="chbxGp7Opt2" value="Sim" required>
 						<label class="form-check-label" for="chbxGp3Opt2">Sim</label>
-						<input class="form-check-input ml-1" type="text" id="inpChamado" value="INC00" placeholder="INC00">
+						<input class="form-check-input ml-1" type="text" id="inpChamado" name="chamadoAnterior" value="INC00" placeholder="INC00">
 					</div>
 																	
 				</div>
@@ -207,21 +226,21 @@
 				<div class="form-group col-4">
 						
 					<label for="contatoNome">Nome</label>
-					<input class="form-control" type="text" id="contatoNome" required> 
+					<input class="form-control" type="text" name="contatoNome" id="contatoNome" required> 
 				
 				</div>
 				
 				<div class="form-group col-4">	
 					
 					<label for="contatoTelefone">Telefone</label>
-					<input class="form-control" type="text" id="contatoTelefone" placeholder="(11)12345 7895" required>
+					<input class="form-control" type="text" id="contatoTelefone" name="contatoTelefone" placeholder="(11)12345 7895" required>
 				
 				</div>
 				
 				<div class="form-group col-4">
 					
 					<label for="contatoLocalidade">Localidade</label>
-					<input class="form-control" type="text" id="contatoLocalidade" required>
+					<input class="form-control" type="text" id="contatoLocalidade" name="contatoLocalidade" required>
 					
 				</div>
 					

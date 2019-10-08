@@ -35,7 +35,7 @@
 			
 			<div class="collapse navbar-collapse" id="navbarMain">
 				<ul class="navbar-nav mr-auto mx-auto">
-					<li class="nav-item active"><a class="nav-link" href="{{url_for('registrar')}}">Registrar</a>
+					<li class="nav-item active"><a class="nav-link" href="{{url_for('paginaDeRegistroChamados')}}">Registrar</a>
 					</li>
 	
 					<li class="nav-item"><a class="nav-link" href="#">Consultar</a>
@@ -50,7 +50,12 @@
 			</div>
 		</nav>
 	
-		{%block body%} {%endblock%}
+		<div class="m-3">
+		
+			{%block body%} 
+			{%endblock%}
+			
+		</div>
 		
 		<!-- Optional JavaScript -->
 	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
