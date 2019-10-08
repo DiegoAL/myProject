@@ -11,6 +11,7 @@ from Controller.BD.sqlLite3_creat import main, getConnect
 from Controller.BD import sqlLite3_creat
 from Model.ModelChamado import *
 from datetime import date, datetime
+from matplotlib.backends.backend_agg import RendererAgg
 
 app = Flask(__name__)
 
@@ -88,15 +89,19 @@ def registrarChamado():
         contatoNome = request.form.get('contatoNome'),
         contatoTelefone = request.form.get('contatoTelefone'),
         contatoLocalidade = request.form.get('contatoLocalidade'))
+    
     try:        
         db.session.add(newChamado)
         db.session.commit()
         
-        #TODO: necessario informar o numero do chamado
-        return render_template("chamadoRegistradoSucesso.html")
+        #FIXME: Identificar por que o try except está indo parar no erro mesmo tendo sucesso
+        return render_template("chamadoRegistradoSucesso.html", numeroChamado = newChamado.numeroChamado)
     
     #TODO: gerar um log de erro
     except Exception as error:
         return render_template("erro.html")
-        
+
+@app.route("/teste")
+def teste():
+    return render_template("chamadoRegistradoSucesso.html")   
     

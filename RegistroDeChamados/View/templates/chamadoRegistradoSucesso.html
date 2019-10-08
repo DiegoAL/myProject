@@ -1,5 +1,23 @@
 {% extends "layout.html"%}
 
 {%block body%}
- teste
+ 	<div class="container">
+ 		<div class="jumbotron jumbotron-fluid rounded bg-light pt-0">
+ 		
+ 			<div class="alert alert-success" role="alert"> 
+ 				<h5>Chamado registrado com sucesso!</h5>
+ 			</div>
+ 			
+ 			<div class="row">
+ 				<div class="col">
+ 					<p class="lead">Seu chamado foi registrado com sucesso e logo será tratado pela equipe</p>
+ 					<p>
+						Numero do chamado:
+						<strong>{{numeroChamado}}</strong>
+					</p>
+ 				</div>
+ 			</div>
+ 		
+ 		</div>
+ 	</div>
 {%endblock%}
