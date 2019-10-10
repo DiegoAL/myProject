@@ -1,4 +1,11 @@
+
+/*EStilo não está sendo mais utilizados pois os links estão utilizando a classe de btn*/
+/*
 ul li{
 	font-size: 25px;
 	font-weight: bold;
+}
+*/
+.marginTopFooter{
+	margin-top: 100px !important;
 }

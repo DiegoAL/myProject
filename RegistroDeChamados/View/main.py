@@ -65,11 +65,14 @@ def paginaDeRegistroChamados():
 @app.route('/chamadoRegistrado', methods=['POST'])
 def registrarChamado():
     
+    #busca o ID do tipo de chamado Aberto pois todo chamado novo devera entrar com esse status 
+    sts = Status.query.filter_by(descStatus = 'Aberto').first()
+    
     newChamado = Chamado(
         dataAbertura = diaAtual,
         dataEncerramento = None,
         #Busca pelo status 'aberto' no chamado
-        statusChamado = Status.query.filter_by(descStatus = 'Aberto').first(),
+        statusChamado = sts.id,
         solicitanteNome = request.form.get('nome'),
         solicitanteTelefone = request.form.get('telefone'),
         solicitanteLocalidade = request.form.get('localidade'),
@@ -91,15 +94,15 @@ def registrarChamado():
         contatoLocalidade = request.form.get('contatoLocalidade'))
     
     try:        
+        
         db.session.add(newChamado)
         db.session.commit()
         
-        #FIXME: Identificar por que o try except está indo parar no erro mesmo tendo sucesso
         return render_template("chamadoRegistradoSucesso.html", numeroChamado = newChamado.numeroChamado)
     
     #TODO: gerar um log de erro
     except Exception as error:
-        return render_template("erro.html")
+        return render_template("erro.html", erro  = error)
 
 @app.route("/teste")
 def teste():

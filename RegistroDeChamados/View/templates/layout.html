@@ -22,7 +22,6 @@
 
 	<body>
 	
-		<!-- FIXME: Ajustar a pagina para aparecer botoes ao inves de apenas texto -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			
 			<a class="navbar-brand" href="{{url_for('index')}}">
@@ -35,21 +34,30 @@
 			
 			<div class="collapse navbar-collapse" id="navbarMain">
 				<ul class="navbar-nav mr-auto mx-auto">
-					<li class="nav-item active"><a class="nav-link" href="{{url_for('paginaDeRegistroChamados')}}">Registrar</a>
+				
+					<!-- caso fique estranho voltar a classe nav-link  -->
+					<li class="nav-item active">
+						<a class="btn btn-success mr-3" href="{{url_for('paginaDeRegistroChamados')}}">Registrar</a>
 					</li>
 	
-					<li class="nav-item"><a class="nav-link" href="#">Consultar</a>
+					<li class="nav-item">						
+						<a class="btn btn-outline-secondary mr-3" href="#">Consultar</a>
 					</li>
 	
-					<li class="nav-item"><a class="nav-link" href="#">Duvidas</a></li>
+					<li class="nav-item">
+						<a class="btn btn-outline-secondary mr-3" href="#">Duvidas</a>
+					</li>
 					
 					<!-- TODO: Criar a pagina para gerenciar as informacoes de tablea no banco -->
-					<li class="nav-item"><a class="nav-link" href="#">Gerenciamento Infos</a></li>
+					<li class="nav-item">
+						<a class="btn btn-outline-secondary mr-3" href="#">Gerenciamento Infos</a>
+					</li>
 	
 				</ul>
 			</div>
 		</nav>
 	
+		<!-- Conteudo do site -->
 		<div class="m-3">
 		
 			{%block body%} 
@@ -57,7 +65,16 @@
 			
 		</div>
 		
-		<!-- Optional JavaScript -->
+		<!-- Footer da pagina -->
+		<div class="jumbotron jumbotron-fluid bg-dark text-white marginTopFooter mb-0 p-4">
+			<div class="text-center">
+				<h6>Desenvolvido por:</h6>
+				<a href="https://www.linkedin.com/in/diego-alves-bb009a6a">Diego Alves de Assis</a>
+			</div>
+		</div>
+		
+		
+		<!-- JavaScript para funcionamento do bootstraps-->
 	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

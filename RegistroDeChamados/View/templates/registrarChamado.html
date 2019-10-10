@@ -11,7 +11,6 @@
 
 {%block body%}
 
-	<!-- FIXME: Desenvolver o form conforme o arquivo 'modeloForm.PNG' e alimentar o banco com informações temporarias -->
 	<div class="container">
 	
 		<form class="p-3 needs-validation" action="{{url_for('registrarChamado')}}" method="POST" novalidate>
@@ -43,7 +42,7 @@
 					<select class="form-control" id="cbxTpChamado" name="cbxTpChamado" required >
 						<option></option> 
 						{% for item in tpchamados %}
-							<option> {{ item.descricao }} </option> 
+							<option value="{{item.id}}"> {{ item.descricao }} </option> 
 						{%endfor%}
 					</select>
 					
@@ -55,7 +54,7 @@
 					<select class="form-control" id="cbxSistema" name="cbxSistema" required>
 						<option></option>
 						{%for item in sistemas%}
-							<option> {{item.descricao}} </option>
+							<option value="{{item.id}}"> {{item.descricao}} </option>
 						{%endfor%}
 					</select>
 				</div>	
@@ -69,7 +68,7 @@
 					<select class="form-control mt-4" id="cbxOrigemReclamacao" name="cbxOrigemReclamacao" required> 
 						<option></option>
 						{% for item in origemReclamacao %}
-							<option> {{item.area}} </option>
+							<option value="{{item.id}}"> {{item.area}} </option>
 						{%endfor%}
 					</select>
 					

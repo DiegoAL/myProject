@@ -35,9 +35,6 @@ class Chamado(sqla.Model):
     contatoTelefone = sqla.Column(sqla.String(14), nullable = False)
     contatoLocalidade = sqla.Column(sqla.String(30), nullable = False)
     
-    def addNovoChamado(self,):
-        pass
-    
 class TipoChamado(sqla.Model):
     __tablename__ = 'tblTipoChamado'
     id = sqla.Column(sqla.Integer, primary_key = True)
