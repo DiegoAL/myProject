@@ -58,22 +58,23 @@
 		</nav>
 	
 		<!-- Conteudo do site -->
-		<div class="m-3">
+		<div class="m-3 preventOverlap">
 		
 			{%block body%} 
 			{%endblock%}
 			
 		</div>
 		
-		<!-- Footer da pagina -->
-		<div class="jumbotron jumbotron-fluid bg-dark text-white marginTopFooter mb-0 p-4">
-			<div class="text-center">
-				<h6>Desenvolvido por:</h6>
-				<a href="https://www.linkedin.com/in/diego-alves-bb009a6a">Diego Alves de Assis</a>
+		<!-- Footer da pagina -->			
+		<footer class="fixed-bottom">
+			<div class="jumbotron jumbotron-fluid bg-dark text-white mb-0 p-1 ">
+				<div class="text-center">
+					<h6>Desenvolvido por:</h6>
+					<a href="https://www.linkedin.com/in/diego-alves-bb009a6a">Diego Alves de Assis</a>
+				</div>
 			</div>
-		</div>
-		
-		
+		</footer>		
+			
 		<!-- JavaScript para funcionamento do bootstraps-->
 	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

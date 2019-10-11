@@ -50,8 +50,13 @@ def main():
 #Inicio
 @app.route("/")
 def index():
+    #FIXME: Iniciar o main quando o servidor for iniciado
     main()
-    return render_template("index.html")
+    #FIXME: Ajustar o select para realizar o join e buscar os valor do campo descricao de cada FK
+    #chamados = Chamado.query.filter_by(dataEncerramento = None).all()
+    chamados = db.session.query(Chamado,TipoChamado).filter(Chamado.tipo == TipoChamado.id).all()
+    
+    return render_template("index.html", chamados = chamados)
 
 #Registrod e novos chamados
 @app.route("/registrarchamado")

@@ -8,26 +8,33 @@
 
 {%block body%}
 
-		<div class="alert alert-warning" role="alert">
-			Avisos Importantes!
-		</div>
-
-		<!--TODO: Ajustar o código para buscar os alertas cadastrados no banco de dados  --> 		
-		<div class="card" style="margin: 15px">
-			<div class="card-header"> Indisponibilidade</div>
-			<div class="card-body">
-				<h5 class="card-title">Sistema CRM</h5>
-				<p class="card-text">Sistema crm encontra-se indisponivel no momento devido a manutenção</p>				
+			<div class="alert alert-warning" role="alert">
+				Avisos Importantes!
 			</div>
-		</div>
-		
-		<div class="card">
-			<div class="card-header"> Indisponibilidade</div>
-			<div class="card-body">
-				<h5 class="card-title">Sistema CRM</h5>
-				<p class="card-text">Sistema crm encontra-se indisponivel no momento devido a manutenção</p>				
-			</div>
-		</div>
 	
+			<!--FIXME: Ajustar o código para buscar os alertas cadastrados no banco de dados e ajustar para respeitar a grid --> 		
+		
+			<div class="row">
+				{% for chamado in chamados %}
+					<div class="col-md-6">
+						<div class="card">
+							<div class="card-header"> {{chamado.tipo}}</div>
+							<div class="card-body">
+								<h5 class="card-title"> {{chamado.sistema}}</h5>
+								<p class="card-text scrollBox">{{chamado.descricaoProblema}}</p>				
+							</div>
+							</div>
+						</div>
+					{%endfor%}
+					
+					<!--  TODO: INCLUIR POSSIVEIS CAMPOS:
+								descricaoproblema
+								problema lojas
+								problema
+								problemaEnel
+								problemaCCenter
+								contato: Nome e Telefone
+					-->
+			</div>
 
 {%endblock%}
