@@ -10,31 +10,25 @@
 
 			<div class="alert alert-warning" role="alert">
 				Avisos Importantes!
-			</div>
-	
-			<!--FIXME: Ajustar o código para buscar os alertas cadastrados no banco de dados e ajustar para respeitar a grid --> 		
+			</div> 		
 		
 			<div class="row">
 				{% for chamado in chamados %}
 					<div class="col-md-6">
 						<div class="card">
-							<div class="card-header"> {{chamado.tipo}}</div>
-							<div class="card-body">
-								<h5 class="card-title"> {{chamado.sistema}}</h5>
-								<p class="card-text scrollBox">{{chamado.descricaoProblema}}</p>				
+							<div class="card-header"> 
+								{{chamado[1].descricao}}
+								{%if chamado[0].numeroChamado == chamados[0][0].numeroChamado%}
+									<span class="badge badge-primary">Novo</span>
+								{%endif%}
 							</div>
+							<div class="card-body">
+								<h5 class="card-title"> {{chamado[2].descricao}}</h5>
+								<p class="card-text scrollBox">{{chamado[0].descricaoProblema}}</p>			
 							</div>
 						</div>
+					</div>
 					{%endfor%}
-					
-					<!--  TODO: INCLUIR POSSIVEIS CAMPOS:
-								descricaoproblema
-								problema lojas
-								problema
-								problemaEnel
-								problemaCCenter
-								contato: Nome e Telefone
-					-->
 			</div>
 
 {%endblock%}

@@ -11,7 +11,7 @@ from Controller.BD.sqlLite3_creat import main, getConnect
 from Controller.BD import sqlLite3_creat
 from Model.ModelChamado import *
 from datetime import date, datetime
-from matplotlib.backends.backend_agg import RendererAgg
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 
@@ -20,6 +20,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = r'sqlite:///../Controller/BD/RegistroCha
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+#debug toolbar
+app.config['SECRET_KEY'] = "QualquerCoisa"
+debugToolBar = DebugToolbarExtension(app)
 
 #variavel global de data atual
 diaAtual = date.today()
@@ -52,10 +56,16 @@ def main():
 def index():
     #FIXME: Iniciar o main quando o servidor for iniciado
     main()
-    #FIXME: Ajustar o select para realizar o join e buscar os valor do campo descricao de cada FK
-    #chamados = Chamado.query.filter_by(dataEncerramento = None).all()
-    chamados = db.session.query(Chamado,TipoChamado).filter(Chamado.tipo == TipoChamado.id).all()
     
+    #Busca os chamados registrados no banco que estejam em aberto 
+    chamados = db.session.query(Chamado,TipoChamado,Sistema).filter_by(dataEncerramento = None).order_by(Chamado.dataAbertura.desc()).join(TipoChamado).join(Sistema).all()
+    ####
+    for chamado in chamados:
+        if chamado[0].numeroChamado == chamados[0][0].numeroChamado:
+            print('foi')
+        print (f'item: {chamado}')
+        print (f'lista: {chamados[0]}')
+    ####
     return render_template("index.html", chamados = chamados)
 
 #Registrod e novos chamados
