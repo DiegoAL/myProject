@@ -16,6 +16,9 @@
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 			crossorigin="anonymous">
 		
+		<!-- Scritp de abrangencia global -->
+		<script src="{{ url_for('static',filename='javascript/layout.js')}}"></script>
+		
 		{%block head%} {%endblock%}
 	
 	</head>
@@ -24,7 +27,7 @@
 	
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			
-			<a class="navbar-brand" href="{{url_for('index')}}">
+			<a class="navbar-brand mb-3" href="{{url_for('index')}}">
 				<img src="{{ url_for('static', filename='imagens/enel-logo.PNG') }}">
 			</a>
 			
@@ -36,20 +39,20 @@
 				<ul class="navbar-nav mr-auto mx-auto">
 				
 					<!-- caso fique estranho voltar a classe nav-link  -->
-					<li class="nav-item active">
+					<li class="nav-item active mb-2">
 						<a class="btn btn-success mr-3" href="{{url_for('paginaDeRegistroChamados')}}">Registrar</a>
 					</li>
 	
-					<li class="nav-item">						
-						<a class="btn btn-outline-secondary mr-3" href="#">Consultar</a>
+					<li class="nav-item mb-2">						
+						<a class="btn btn-outline-secondary mr-3" href="{{url_for('consultarChamado')}}">Consultar</a>
 					</li>
 	
-					<li class="nav-item">
+					<li class="nav-item mb-2">
 						<a class="btn btn-outline-secondary mr-3" href="#">Duvidas</a>
 					</li>
 					
 					<!-- TODO: Criar a pagina para gerenciar as informacoes de tablea no banco -->
-					<li class="nav-item">
+					<li class="nav-item mb-2">
 						<a class="btn btn-outline-secondary mr-3" href="#">Gerenciamento Infos</a>
 					</li>
 	

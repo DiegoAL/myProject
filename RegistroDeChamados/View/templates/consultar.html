@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<form class="form-group needs-validation" novalidate method="POST" action="{{ url_for('consultarChamado') }}">
+		<div class="form-row justify-content-center">		
+			
+			<div class="col-auto">
+				<input class="form-control" type="text" id="cbxPesquisa" name="numeroChamado" placeholder="Numero do chamado" required>
+				<div class="invalid-feedback">
+					Informar o numero do chamado!
+				</div>
+			</div>
+			
+			<div class="col-auto">	
+				<button class="btn btn-primary" type="submit">Pesquisar</button>
+			</div>
+			
+		</div>
+	</form>
+	
+	<div class="jumbotron jumbotrom-fluid bg-secondary p-0 pb-3">
+		<!-- FIXME: Incluir um icone de seta e ajustar a classe show do collapse-show para exibir automaticamente o conteudo-->	
+		<a role="button" data-toggle="collapse" href="#infoCollapse" aria-expanded="true" aria-controls="#infoCollapse">
+			<div class="alert alert-primary mb-3" role="alert">Informações do Chamado</div>
+		</a>
+		
+		<div class="collapse collapse-show" id="infoCollapse">
+			<div class="text-white pr-3 pl-3">
+				<div class="row form-group">
+					<div class="col-sm">
+						<label for="numChamado">Numero do chamado</label>
+						<input class="form-control" type="text" id="numChamado" value="{{chamado[0].numeroChamado}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="numChamado">Data da Abertura</label>
+						<input class="form-control" type="text" id="numChamado" value="{{chamado[0].dataAbertura}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="numChamado">Solicitante</label>
+						<input class="form-control" type="text" id="numChamado" value="{{chamado[0].solicitanteNome}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="numChamado">Contato</label>
+						<input class="form-control" type="text" id="numChamado" value="{{chamado[0].solicitanteTelefone}}" readonly>
+					</div>
+					
+				</div>
+				
+				<div class="row form-group">
+					<div class="col-md">
+						<label for="tipo"> Tipo do Problema </label>
+						<input class="form-control" type="text" id="tipo" value="{{chamado[1].descricao}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="sistema"> Sistema Afetado </label>
+						<input class="form-control" type="text" id="sistema" value="{{chamado[2].descricao}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="origem">Origem da Reclamação </label>
+						<input class="form-control" type="text" id="origem" value="{{chamado[3].area}}" readonly>
+					</div>
+				</div>
+				
+				<hr class="bg-white">
+				
+				<div class="form-group">
+					<label for="descricao">Descrição do chamado</label>
+					<textarea class="form-control" type="text" id="descricao" readonly>{{chamado[0].descricaoProblema}}</textarea>
+				</div>
+				
+				<div class="form-group">
+					<label for="abangencia">Abrangencia de testes</label>
+					<textarea class="form-control" id="abrangencia" readonly> O processo conlclui com [erro] Sendo que o problema [afeta] todas as lojas .... </textarea>
+				</div>
+				
+				<hr class="bg-white">
+				
+				<h6>Contato para Troubleshooting (testes)</h6>
+				
+				<div class="row form-group">
+					<div class="col-md">
+						<label for="tsNome">Nome</label>
+						<input class="form-control" type="text" id="tsNome" value="{{chamado[0].contatoNome}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="tsTelefone">Telefone</label>
+						<input class="form-control" type="text" id="tsTelefone" value="{{chamado[0].contatoTelefone}}" readonly>
+					</div>
+					
+					<div class="col-md">
+						<label for="tsLocalidade">Localidade</label>
+						<input class="form-control" type="text" id="tsLocalidade" value="{{chamado[0].contatoLocalidade}}" readonly>
+					</div>
+				</div>
+	
+			</div>
+		</div>
+	</div> <!-- fim jumbotron -->
+	
+	<form class="" action="#" method="POST">
+		
+		<div class="form-row">
+		
+			<div class="col">	
+				<label for="status">Status</label>
+				<select class="form-control" id="status">
+					<option></option>
+					{%for item in status %}	
+						<option>{{item.descStatus}}</option>
+					{%endfor%}
+				</select>
+			</div>
+			
+			<div class="col">
+				<label for="dtEncerramento">Data de encerramento</label>
+				<input class="form-control" id="dtEncerramento" value="{{chamado[0].dataEncerramento}}" type="text" readonly>
+			</div>
+		</div>
+	</form>
+	
+	
+	
+	
+{% endblock %}

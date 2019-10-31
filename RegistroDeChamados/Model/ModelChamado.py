@@ -34,6 +34,8 @@ class Chamado(sqla.Model):
     contatoNome = sqla.Column(sqla.String(30), nullable = False)
     contatoTelefone = sqla.Column(sqla.String(14), nullable = False)
     contatoLocalidade = sqla.Column(sqla.String(30), nullable = False)
+    comentarios = sqla.Column(sqla.Integer, sqla.ForeignKey('tblComentarios.id'), nullable = True)
+    causaRaiz = sqla.Column(sqla.String(255), nullable = True)
     
 class TipoChamado(sqla.Model):
     __tablename__ = 'tblTipoChamado'
@@ -54,4 +56,10 @@ class Status (sqla.Model):
     __tablename__ = 'tblStatus'
     id = sqla.Column(sqla.Integer, primary_key = True)
     descStatus = sqla.Column(sqla.String(30), nullable = False)
-    #fkNumeroChamado = sqla.Column(sqla.Integer, sqla.ForeignKey('tblChamado.numeroChamado'), nullable = False)
+
+class Comentarios (sqla.Model):
+    #FIXME: Necessario definir como sera o relacionamento da tabela de chamados com a tabela de comentarios (1:n)
+    __tablename__ = 'tblComentarios'
+    id = sqla.Column(sqla.Integer, primary_key = True)
+    comentario
+     

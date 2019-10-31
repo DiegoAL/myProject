@@ -22,9 +22,17 @@
 									<span class="badge badge-primary">Novo</span>
 								{%endif%}
 							</div>
+							
 							<div class="card-body">
 								<h5 class="card-title"> {{chamado[2].descricao}}</h5>
 								<p class="card-text scrollBox">{{chamado[0].descricaoProblema}}</p>			
+							</div>
+							
+							<div class="card-footer p-2">
+								<form action="{{url_for('consultarChamado')}}" method="POST">
+									<input type="hidden" value="{{chamado[0].numeroChamado}}" name="numeroChamado">
+									<button class="btn btn-danger float-right m-0" type="submit">Detalhes</button>
+								</form>
 							</div>
 						</div>
 					</div>

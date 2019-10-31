@@ -12,11 +12,15 @@ from Controller.BD import sqlLite3_creat
 from Model.ModelChamado import *
 from datetime import date, datetime
 from flask_debugtoolbar import DebugToolbarExtension
+from scipy.stats._multivariate import method
 
 app = Flask(__name__)
 
 #Parametrização da conexao com o banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = r'sqlite:///../Controller/BD/RegistroChamado.db'
+database_url = r'..\Controller\BD\RegistroChamado.db'
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = r'sqlite:///' + database_url
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -32,8 +36,6 @@ diaAtual = diaAtual.strftime("%d/%m/%Y")
 #converter o objeto em datetime
 diaAtual = datetime.strptime(diaAtual, '%d/%m/%Y')
 
-database_url = r'..\Controller\BD\RegistroChamado.db'
-
 #FIXME:Validação de FK no sqlite3 não esta funcionando, post no stackoverflow
 #Ativar validação FK para o sqlite3
 engine = create_engine(r'sqlite:///../Controller/BD/RegistroChamado.db')
@@ -43,7 +45,10 @@ def _fk_pragma_on_connect(con = getConnect(database_url)):
 
 event.listen(engine, 'connect', _fk_pragma_on_connect)
 
-def main():
+#Cria o banco sqlite caso nao exista e cria as tabelas caso não existam
+@app.before_first_request
+def initialize():
+    
     #realiza a criação do banco de dados
     sqlLite3_creat.main(database_url)
     
@@ -51,31 +56,28 @@ def main():
     sqla.create_all()
     
     
-#Inicio
+#Pagina inicial, onde sao exibidas notificacoes em aberto
 @app.route("/")
 def index():
-    #FIXME: Iniciar o main quando o servidor for iniciado
-    main()
     
     #Busca os chamados registrados no banco que estejam em aberto 
     chamados = db.session.query(Chamado,TipoChamado,Sistema).filter_by(dataEncerramento = None).order_by(Chamado.dataAbertura.desc()).join(TipoChamado).join(Sistema).all()
-    ####
-    for chamado in chamados:
-        if chamado[0].numeroChamado == chamados[0][0].numeroChamado:
-            print('foi')
-        print (f'item: {chamado}')
-        print (f'lista: {chamados[0]}')
-    ####
     return render_template("index.html", chamados = chamados)
 
-#Registrod e novos chamados
+#Registro de novos chamados
 @app.route("/registrarchamado")
 def paginaDeRegistroChamados():
-    tpChamados = TipoChamado.query.all()
-    sistemas = Sistema.query.all()
-    origemReclamacao = OrigemReclamacao.query.all()
+    
+    try:
+        tpChamados = TipoChamado.query.all()
+        sistemas = Sistema.query.all()
+        origemReclamacao = OrigemReclamacao.query.all()
+        return render_template("registrarChamado.html", tpchamados = tpChamados, sistemas = sistemas, origemReclamacao = origemReclamacao )
+    
+    except Exception as err:
+        return render_template("erro.html", erro = err)
         
-    return render_template("registrarChamado.html", tpchamados = tpChamados, sistemas = sistemas, origemReclamacao = origemReclamacao )
+    
 
 @app.route('/chamadoRegistrado', methods=['POST'])
 def registrarChamado():
@@ -119,7 +121,21 @@ def registrarChamado():
     except Exception as error:
         return render_template("erro.html", erro  = error)
 
-@app.route("/teste")
-def teste():
-    return render_template("chamadoRegistradoSucesso.html")   
+@app.route("/consultar", methods=['GET', 'POST'])
+def consultarChamado():
+    
+    if request.method == 'GET':
+        #retorna uma lista vazia
+        chamado = (Chamado(),TipoChamado, Sistema, OrigemReclamacao) 
+        return render_template('consultar.html', chamado = chamado)
+    
+    elif request.method == 'POST':
+        numeroChamado = request.form.get('numeroChamado')
+        chamado = db.session.query(Chamado, TipoChamado, Sistema, OrigemReclamacao).filter_by(numeroChamado = numeroChamado).join(TipoChamado).join(Sistema).join(OrigemReclamacao).first()
+        status = Status.query.all()
+        return render_template('consultar.html', chamado = chamado, status = status)
+    
+    
+if __name__ == '__main__':
+    initialize()
     
